@@ -14,7 +14,8 @@ pipeline {
         }
         stage ('build') {
             steps{
-                sh 'diff file1.txt file2.txt'
+                sh 'head file1.txt' 
+                sh 'tail file2.txt'
                
             }
         }
