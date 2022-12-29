@@ -9,13 +9,13 @@ pipeline {
         }
         stage ('checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/amitvermaa93/jenkins-git-integration.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nandinitummalapalli/practice.git']]])
             }
         }
         stage ('build') {
             steps{
-                sh "mvn clean verify"
-                sh "mvn install"
+                sh "diff file1.txt file2.txt"
+                echo 'print difference'
             }
         }
     }   
