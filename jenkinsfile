@@ -1,0 +1,25 @@
+pipeline { 
+     agent any {
+         stages{
+           stage('Print') {
+             steps {
+                 echo "Hello World"
+             }
+           }
+           stage('Checkout') {
+               steps {
+                    checkout{[$class:'$SCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url:'https://github.com/nandinitummalapalli/practice.git']]]
+                }
+           }
+           stage('Build') {
+             steps {
+                 sh "mvn clean install"
+             }
+           }
+         }
+         post {
+             always {
+                  echo 'Thanks for running the job'
+             }
+         }
+ }
