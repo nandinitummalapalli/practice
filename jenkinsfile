@@ -21,7 +21,7 @@ pipeline {
     }   
     post {
             always {
-                 echo 'Thanks for running the job'
+                 echo 'Thanks for running the job!'
             }
         }
 }
