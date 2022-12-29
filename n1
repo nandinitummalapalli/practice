@@ -1,1 +1,29 @@
-Hello World
+pipeline {
+  agent any
+  
+  stages { 
+        stage ('print') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage ('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nandinitummalapalli/practice.git']]])
+            }
+        }
+        stage ('build') {
+            steps{
+                sh 'diff file1.txt file2.txt'
+                echo $? '1'
+                echo 'return'
+               
+            }
+        }
+    }   
+    post {
+            always {
+                 echo 'Thanks for running the job!'
+            }
+        }
+}
