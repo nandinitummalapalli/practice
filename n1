@@ -14,10 +14,7 @@ pipeline {
         }
         stage ('build') {
             steps{
-                sh 'diff file1.txt file2.txt'
-                echo $? '1'
-                echo 'return'
-               
+                sh 'diff file1.txt file2.txt'    
             }
         }
     }   
