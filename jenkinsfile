@@ -12,12 +12,12 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nandinitummalapalli/practice.git']]])
             }
         }
-        /*stage ('build') {
+        stage ('build') {
             steps{
-                sh "diff file1.txt file2.txt"
+                sh 'diff file1.txt file2.txt'
                
             }
-        }*/
+        }
     }   
     post {
             always {
