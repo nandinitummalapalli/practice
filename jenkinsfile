@@ -1,5 +1,4 @@
-pipeline 
-{ 
+pipeline { 
      agent any 
          stages{
            stage('Print') {
@@ -17,7 +16,7 @@ pipeline
                  sh "mvn clean install"
              }
            }
-         
+         } 
          post {
              always {
                   echo 'Thanks for running the job'
