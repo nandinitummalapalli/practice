@@ -1,25 +1,27 @@
-pipeline { 
-     agent any 
-         stages{
-           stage('Print') {
-             steps {
-                 echo "Hello World"
-             }
-           }
-           stage('Checkout') {
-               steps {
-                    checkout{[$class:'$SCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url:'https://github.com/nandinitummalapalli/practice.git']]]
-                }
-           }
-           stage('Build') {
-             steps {
-                 sh "mvn clean install"
-             }
-           }
-         } 
-         post {
-             always {
-                  echo 'Thanks for running the job'
-             }
-         }
- }
+pipeline {
+  agent any
+  
+  stages { 
+        stage ('print') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage ('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/amitvermaa93/jenkins-git-integration.git']]])
+            }
+        }
+        stage ('build') {
+            steps{
+                sh 'mvn clean verify'
+                sh 'mvn install'
+            }
+        }
+    }   
+    post {
+            always {
+                 echo 'Thanks for running the job'
+            }
+        }
+}
